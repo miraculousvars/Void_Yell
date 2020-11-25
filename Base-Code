@@ -1,0 +1,29 @@
+var input;
+var submit;
+
+function setup() {
+  createCanvas(400, 400);
+  
+  input = createInput();
+  input.position(50,0.9*height);
+  
+  submit = createElement('button', "yell");
+  submit.position(220,0.9*height);
+
+}
+
+function draw() {
+  background(220);
+  
+  textSize(30);
+  
+  var words = input.value();
+  
+  var sentence = splitTokens(words, ' ');
+  console.log(sentence);
+  
+ for (var i=0; i<sentence.length; i++) {
+    text(sentence[i],100+(10*i),100+(25*i));
+  }
+
+}
