@@ -16,6 +16,9 @@ function draw() {
   background(220);
   
   textSize(30);
+  textAlign(CENTER);
+  
+  translate(width/2,height/2);
   
   var words = input.value();
   
@@ -23,7 +26,9 @@ function draw() {
   console.log(sentence);
   
  for (var i=0; i<sentence.length; i++) {
-    text(sentence[i],100+(10*i),100+(25*i));
-  }
-
+    background(220);
+    fill(0,0,0,(255-((255/sentence.length)*i)));
+    scale(0.9);
+    text(sentence[i],0,0);
+    }
 }
