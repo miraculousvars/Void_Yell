@@ -1,5 +1,5 @@
-var input;
-var submit;
+let input;
+let submit;
 
 function setup() {
   createCanvas(400, 400);
@@ -7,28 +7,25 @@ function setup() {
   input = createInput();
   input.position(50,0.9*height);
   
-  submit = createElement('button', "yell");
+  submit = createButton("yell");
   submit.position(220,0.9*height);
+  submit.mousePressed(yelling)
 
 }
 
-function draw() {
+
+function yelling() {
   background(220);
   
   textSize(30);
-  textAlign(CENTER);
-  
-  translate(width/2,height/2);
   
   var words = input.value();
   
   var sentence = splitTokens(words, ' ');
   console.log(sentence);
   
- for (var i=0; i<sentence.length; i++) {
-    background(220);
+  for (var i=0; i<sentence.length; i++) {
     fill(0,0,0,(255-((255/sentence.length)*i)));
-    scale(0.9);
-    text(sentence[i],0,0);
-    }
+    text(sentence[i],100+(15*i),150+(30*i));
+    } 
 }
