@@ -3,29 +3,50 @@ let submit;
 
 function setup() {
   createCanvas(400, 400);
-  
+
   input = createInput();
-  input.position(50,0.9*height);
-  
+  input.position(50, 0.9 * height);
+
   submit = createButton("yell");
-  submit.position(220,0.9*height);
+  submit.position(220, 0.9 * height);
   submit.mousePressed(yelling)
 
 }
 
+function draw() {
+  translate(150, 200);
+}
 
 function yelling() {
   background(220);
-  
-  textSize(30);
-  
+
   var words = input.value();
-  
+
   var sentence = splitTokens(words, ' ');
   console.log(sentence);
-  
-  for (var i=0; i<sentence.length; i++) {
+
+  var angle = (360/sentence.length);
+  var radius = (sentence.length * 10);
+
+  for (var i = 0; i < sentence.length; i++) {
+    
+    // increase the angle, decrease the  radius   
+    angle += (1);
+    radius -= (i * 1.5);
+
+    // coordinate conversion
+
+    var x = cos(angle) * radius;
+    var y = sin(angle) * radius;
+
+    // fade with each word 
     fill(0,0,0,(255-((255/sentence.length)*i)));
-    text(sentence[i],100+(15*i),150+(30*i));
-    } 
+
+    // shrink with each word 
+    textSize(30 - (i-1));
+    
+    // print the words! 
+    text(sentence[i], x, y);
+
+  }
 }
